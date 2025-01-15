@@ -9,6 +9,7 @@ public class Accesobd {
     private SessionFactory sf;
     private Session sesion;
     private Transaction transaction;
+    
     protected void setUp() {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // por defecto: hibernate.cfg.xml
@@ -20,11 +21,13 @@ public class Accesobd {
             StandardServiceRegistryBuilder.destroy( registry );
         }
     }
+    
     public void abrir() throws Exception {
         setUp();
         sesion=sf.openSession();
         transaction = sesion.beginTransaction();
     }
+    
     public void cerrar(){
         try {
             transaction.commit();
